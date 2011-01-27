@@ -18,7 +18,7 @@ let us know!
 Simply Using GeoCam Mobile
 --------------------------
 
-.. image:: qr-code.png
+.. image:: http://chart.apis.google.com/chart?cht=qr&chs=230x230&chl=market://search%3Fq%3Dpname:gov.nasa.arc.geocam.geocam
    :align: right
 
 If you have no wish to contribute code to GeoCam Mobile and simply wish to use
