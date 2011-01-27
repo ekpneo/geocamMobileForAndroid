@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="init">
+  <target name="init">
+    <copy file="templates/version.xml" tofile="res/values/version.xml" />
+  </target>
+</project>

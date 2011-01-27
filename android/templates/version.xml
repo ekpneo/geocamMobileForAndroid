@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="version_git_branch">git_branch</string>
+  <string name="version_git_commit">git_commit</string>
+  <string name="version_date">yyyy-mm-dd</string>
+</resources>
