@@ -18,6 +18,6 @@ protocol_
     server compatability -- or if you want to write your own, simple dev 
     server.
 
-.. _setup: ./setup.rst
-.. _architecture: ./architecture.rst
-.. _protocol: ./protocol.rst
+.. _setup: docs/setup.rst
+.. _architecture: docs/architecture.rst
+.. _protocol: docs/protocol.rst
