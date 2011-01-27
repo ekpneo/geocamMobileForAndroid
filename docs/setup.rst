@@ -18,7 +18,7 @@ let us know!
 Simply Using GeoCam Mobile
 --------------------------
 
-.. image:: http://bit.ly/gpt3Ic
+.. image:: qr-code.png
    :align: right
 
 If you have no wish to contribute code to GeoCam Mobile and simply wish to use
