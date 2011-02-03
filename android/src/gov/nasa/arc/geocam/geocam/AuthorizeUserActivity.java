@@ -39,7 +39,7 @@ public class AuthorizeUserActivity extends Activity implements OnClickListener {
     }
 
     public void commitKey(String keyEntered) {
-        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);        
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);  
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(GeoCamMobile.SETTINGS_BETA_TEST_KEY, keyEntered);
         editor.commit();
