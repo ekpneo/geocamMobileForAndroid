@@ -1,0 +1,8 @@
+*~
+*#
+.#*
+local.properties
+TAGS
+gen
+bin
+res/values/version.xml
