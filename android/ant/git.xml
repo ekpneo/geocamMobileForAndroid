@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="git-find-info">
+  <path id="geocam.antlibs">
+    <pathelement path="${basedir}/ant/lib/GeocamAnt.jar" />
+  </path>
+
+  <taskdef name="substring" classname="gov.nasa.arc.geocam.ant.SubstringTask"
+           classpathref="geocam.antlibs" />
+
+  <target name="-git-set-git-base" unless="git.base">
+    <property file="${basedir}/build.properties" />
+    <property name="git.base" value="${basedir}" />
+    <echo>Setting git base repo dir to be ${basedir}</echo>
+  </target>
+
+  <target name="-git-check-exists" depends="-git-set-git-base" unless="git.exists">
+    <property name="git.dir" value="${git.base}/.git" />
+    <path id="git.path.dir" location="${git.dir}" />
+    <available property="git.exists" type="dir" file="${toString:git.path.dir}" />
+  </target>
+
+  <target name="-git-find-branch" depends="-git-check-exists" if="git.exists">
+    <path id="git.path.head" location="${git.dir}/HEAD" />
+    <loadfile property="git.file.head" srcFile="${toString:git.path.head}">
+      <filterchain><striplinebreaks /></filterchain>
+    </loadfile>
+    <substring property="git.ref" input="${git.file.head}" start="5" />
+    <substring property="git.branch" input="${git.ref}" start="11" />
+    <echo>Git branch: ${git.branch}</echo>
+  </target>
+
+  <target name="-git-find-commit" depends="-git-check-exists,-git-find-branch" if="git.exists">
+    <path id="git.path.ref" location="${git.dir}/${git.ref}" />
+    <loadfile property="git.file.commit" srcFile="${toString:git.path.ref}">
+      <filterchain><striplinebreaks /></filterchain>
+    </loadfile>
+    <substring property="git.commit" input="${git.file.commit}" start="0" end="7" />
+    <echo>Git commit: ${git.commit}</echo>
+  </target>
+
+  <target name="-git-find-values" depends="-git-find-commit,-git-find-branch" if="git.exists" />
+
+  <target name="-git-bogus-values" depends="-git-check-exists" unless="git.exists">
+    <echo>Making up bogus values for git version information.</echo>
+    <property name="git.branch" value="N/A" />
+    <property name="git.commit" value="N/A" />
+  </target>
+
+  <target name="git-find-info" depends="-git-find-values,-git-bogus-values" />
+</project>

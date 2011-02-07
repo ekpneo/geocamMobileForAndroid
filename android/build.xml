@@ -40,6 +40,8 @@
          should be checked in in Version Control Systems. -->
     <property file="default.properties" />
 
+    <import file="${basedir}/ant/version.xml" />
+
     <!-- Custom Android task to deal with the project target, and import the proper rules.
          This requires ant 1.6.0 or above. -->
     <path id="android.antlibs">
@@ -49,16 +51,14 @@
     </path>
 
     <taskdef name="setup"
-        classname="com.android.ant.SetupTask"
-        classpathref="android.antlibs" />
+             classname="com.android.ant.SetupTask"
+             classpathref="android.antlibs" />
+
 
     <!-- extension targets. Uncomment the ones where you want to do custom work
          in between standard targets -->
 
-    <target name="-pre-build" depends="">
-      <echo message="Generating version information"/>
-      <exec executable="../scripts/version.sh"
-            dir="." />
+    <target name="-pre-build" depends="make-version-xml">
     </target> 
 
 <!--

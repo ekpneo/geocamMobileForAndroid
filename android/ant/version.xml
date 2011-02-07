@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="init">
-  <target name="init">
-    <copy file="templates/version.xml" tofile="res/values/version.xml" />
+<project default="make-version-xml">
+  <import file="${basedir}/ant/git.xml" />
+
+  <target name="make-version-xml" depends="git-find-info">
+    <tstamp>
+      <format property="git.date" pattern="yyyy-MM-dd" />
+    </tstamp>
+    <copy file="${basedir}/templates/version.xml"
+          tofile="${basedir}/res/values/version.xml"
+          overwrite="true">
+      <filterchain>
+        <replacetokens>
+          <token key="GIT_BRANCH" value="${git.branch}" />
+          <token key="GIT_COMMIT" value="${git.commit}" />
+          <token key="DATE" value="${git.date}" />
+        </replacetokens>
+      </filterchain>
+    </copy>
+    <echo>Git version information embedded</echo>
   </target>
 </project>
